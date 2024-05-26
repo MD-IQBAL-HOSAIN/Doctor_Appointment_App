@@ -12,29 +12,28 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ URL('/') }}">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ URL('todos') }}">Todo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ URL('users') }}">Users</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ URL('about') }}">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ URL('contact') }}">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ URL('cart') }}">Cart</a>
-          </li>
+         
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Cat. Menu
+                Departments
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ URL('categories') }}">Categories</a></li>
-              <li><a class="dropdown-item" href="{{ URL('subcategories') }}">Sub Categories</a></li>
+              <li><a class="dropdown-item" href="{{ URL('neurology') }}">neurology</a></li>
+              <li><a class="dropdown-item" href="{{ URL('orthopedic') }}">Orthopedic</a></li>
+              <li><a class="dropdown-item" href="{{ URL('dental') }}">Dental</a></li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ URL('finddoctor') }}">Find a Doctor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ URL('bookappointment') }}">Book Appointment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ URL('contact') }}">Contact US</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ URL('cart') }}">About Us</a>
           </li>
           <li>
           @if (Route::has('login') && Route::has('logout'))

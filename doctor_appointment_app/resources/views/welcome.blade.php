@@ -25,6 +25,10 @@
         {{--login and register start --}}
          {{-- @include('inc.login') --}}
          {{--login and register end  --}}
+
+        {{-- Main start --}}
+        @include('inc.homepage')
+        {{-- Main end --}}
        
         {{-- Footer start --}}
         @include('inc.footer')
