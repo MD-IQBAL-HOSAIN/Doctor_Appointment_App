@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/doc', function () {
+    // return view('welcome');
+    echo "hello";
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
