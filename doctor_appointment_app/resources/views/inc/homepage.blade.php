@@ -40,30 +40,30 @@
   <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
       <div class=" p-2">
-        <img src="./images/doctor.jpg" class="d-block w-100" style="max-width: 340px; max-height: 250px;" alt="image-1">
+        <img src="./images/neurology.webp" class="d-block w-100" style="max-width: 340px; max-height: 250px;" alt="image-1">
         <h5>Neurology</h5>
-        <p>Paragraph</p> 
+        <p>maragraph</p> 
       </div>
     </div>
     <div class="col-12 col-sm-6 col-md-3">
       <div class=" p-2">
-        <img src="./images/operation.jpg" class="d-block w-100" style="max-width: 340px; max-height: 250px;" alt="image-2">
+        <img src="./images/psychology.jpg" class="d-block w-100" style="max-width: 340px; max-height: 250px;" alt="image-2">
         <h5>Psychology</h5>
-        <p>Paragraph</p> 
+        <p>kharagraph</p> 
       </div>
     </div>
     <div class="col-12 col-sm-6 col-md-3">
       <div class="p-2">
-        <img src="./images/patient.jpg" class="d-block w-100" style="max-width: 340px; max-height: 250px;" alt="image-3">
+        <img src="./images/dental.jpg" class="d-block w-100" style="max-width: 340px; max-height: 250px;" alt="image-3">
         <h5>Dental</h5>
-        <p>Paragraph</p> 
+        <p>Naragraph</p> 
       </div>
     </div>
     <div class="col-12 col-sm-6 col-md-3">
       <div class="p-2">
-        <img src="./images/doctor.jpg" class="d-block w-100" style="max-width: 340px; max-height: 250px;" alt="image-1">
+        <img src="./images/orthopedic.jpg" class="d-block w-100" style="max-width: 340px; max-height: 250px;" alt="image-1">
         <h5>Orthopedic</h5>
-        <p>Paragraph</p> 
+        <p>Saragraph</p> 
       </div>
     </div>
   </div>

@@ -30,7 +30,7 @@
           <a class="nav-link" href="{{ URL('bookappointment') }}"><strong style="font-size: 1.2rem;">Book Appointment</strong></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ URL('cart') }}"><strong style="font-size: 1.2rem;">About Us</strong></a>
+          <a class="nav-link" href="{{ URL('aboutus') }}"><strong style="font-size: 1.2rem;">About Us</strong></a>
         </li>
         <li>
         @if (Route::has('login') && Route::has('logout'))

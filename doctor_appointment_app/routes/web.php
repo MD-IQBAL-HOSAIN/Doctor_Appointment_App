@@ -6,9 +6,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/doc', function () {
+Route::get('/finddoctor', function () {
     // return view('welcome');
-    echo "hello";
+    echo "Find A Doctor page";
+});
+Route::get('/bookappointment', function () {
+    // return view('welcome');
+    echo "BOOK APPOINTMENT page";
+});
+Route::get('/aboutus', function () {
+    // return view('welcome');
+    echo "About US page";
 });
 
 Route::get('/dashboard', function () {
