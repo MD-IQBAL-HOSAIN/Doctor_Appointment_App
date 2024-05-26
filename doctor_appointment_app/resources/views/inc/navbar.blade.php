@@ -4,7 +4,7 @@
     <div class="d-flex flex-row-reverse">
       <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="{{ URL('/') }}" aria-label="Bootstrap">
         <img src="./images/doclogo.jpg" alt="Logo" style="max-width: 60pc; max-height: 60px;">
-        <span style="font-size: 1.50rem; font-weight: bold" class=" ">Doctor Appointment</span>
+        <span style="font-size: 1.5rem; font-weight: bold" class=" ">Doctor Appointment</span>
       </a>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,25 +12,25 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown drop-style">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Departments
+              <strong style="font-size: 1.2rem;">Departments</strong>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ URL('neurology') }}">neurology</a></li>
-            <li><a class="dropdown-item" href="{{ URL('orthopedic') }}">Orthopedic</a></li>
-            <li><a class="dropdown-item" href="{{ URL('dental') }}">Dental</a></li>
-            <li><a class="dropdown-item" href="{{ URL('psychology') }}">Psychology</a></li>
+            <li><a class="dropdown-item" href="{{ URL('neurology') }}"><strong style="font-size: 1.1rem;">Neurology</strong></a></li>
+            <li><a class="dropdown-item" href="{{ URL('orthopedic') }}"><strong style="font-size: 1.1rem;">Orthopedic</strong></a></li>
+            <li><a class="dropdown-item" href="{{ URL('dental') }}"><strong style="font-size: 1.1rem;">Dental</strong></a></li>
+            <li><a class="dropdown-item" href="{{ URL('psychology') }}"><strong style="font-size: 1.1rem;">Psychology</strong></a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ URL('finddoctor') }}">Find a Doctor</a>
+          <a class="nav-link" href="{{ URL('finddoctor') }}"><strong style="font-size: 1.2rem;">Find a Doctor</strong></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ URL('bookappointment') }}">Book Appointment</a>
+          <a class="nav-link" href="{{ URL('bookappointment') }}"><strong style="font-size: 1.2rem;">Book Appointment</strong></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ URL('cart') }}">About Us</a>
+          <a class="nav-link" href="{{ URL('cart') }}"><strong style="font-size: 1.2rem;">About Us</strong></a>
         </li>
         <li>
         @if (Route::has('login') && Route::has('logout'))
@@ -38,25 +38,25 @@
             <li class="nav-item">
               <form action="{{ route('logout') }}" method="post">
                 @csrf
-                <button class="nav-link" type="submit">{{ __('Log out') }}</button>
+                <button class="nav-link" type="submit"><strong style="font-size: 1.2rem;">{{ __('Log out') }}</strong></button>
               </form>
             </li>
           @else
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+              <a class="nav-link" href="{{ route('login') }}"><strong style="font-size: 1.2rem;">{{ __('Login') }}</strong></a>
             </li>
             @if (Route::has('register'))
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                  <a class="nav-link" href="{{ route('register') }}"><strong style="font-size: 1.2rem;">{{ __('Register') }}</strong></a>
                 </li>
             @endif
-          @endauth
+          @endif
         @endif
         </li>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-success" type="submit"><strong style="font-size: 1.2rem;">Search</strong></button>
       </form>
     </div>
   </div>

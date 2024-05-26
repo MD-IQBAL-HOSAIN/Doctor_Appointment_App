@@ -1,3 +1,4 @@
+<hr>
 <div style="background-color: dimgrey">
     <footer class="bd-footer py-4 py-md-5 mt-5 bg-body-tertiary" >
       <div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
