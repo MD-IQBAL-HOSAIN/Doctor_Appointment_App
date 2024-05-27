@@ -1,27 +1,26 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DoctorProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/finddoctor', function () {
-    // return view('welcome');
-    echo "Find A Doctor page";
-});
 Route::get('/bookappointment', function () {
-    // return view('welcome');
     echo "BOOK APPOINTMENT page";
 });
 Route::get('/aboutus', function () {
-    // return view('welcome');
     echo "About US page";
 });
 
 Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
-Route::post('/departments', [DepartmentController::class, 'store'])->name('departments.store');
+Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
+Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
+Route::get('/finddoctor',[DoctorProfileController::class, 'index'])->name('doctor.index');
+Route::get('/bookappointment',[AppointmentController::class, 'index'])->name('appointment.index');
 
 
 Route::get('/dashboard', function () {
