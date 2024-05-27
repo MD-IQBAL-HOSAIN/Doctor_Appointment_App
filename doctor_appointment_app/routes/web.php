@@ -13,7 +13,7 @@ Route::get('/bookappointment', function () {
     echo "BOOK APPOINTMENT page";
 });
 Route::get('/aboutus', function () {
-    echo "About US page";
+    return view('aboutus');
 });
 
 Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
@@ -21,6 +21,7 @@ Route::get('/departments/create', [DepartmentController::class, 'create'])->name
 Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
 Route::get('/finddoctor',[DoctorProfileController::class, 'index'])->name('doctor.index');
 Route::get('/bookappointment',[AppointmentController::class, 'index'])->name('appointment.index');
+
 
 
 Route::get('/dashboard', function () {
