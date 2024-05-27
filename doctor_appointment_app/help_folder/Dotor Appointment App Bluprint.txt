@@ -1,0 +1,152 @@
+Project name: Doctor Appointment Web App.
+Project Author & Developer: Bijoy Chowdhury.
+
+1. Navbar
+	*Home
+	*Departments(Category: neurology, orthopedic, dental)
+	*Find a Doctor 
+	*Book Appointment
+	*Login 
+	*Register (3 dashboard, patient , Doctor & Admin)
+	*Contact and About us
+
+2. Home: Show some pic with promote this app.
+
+3. Departments: show all category with search and filter.
+
+4. Find a Doctor: Here user see in Doctor and find which doctors schedule is free. 
+
+5. Book Appointment: All the details of the doctor will be here and get appointment.
+
+6. Login: All (doc. , patient, and admin) will be login here.
+
+7. Register: patient and Doc. will register here and default value will be patient.
+
+**ADMIN Dashboard:
+	1. Appointments
+	2. create Appointment
+	3. Department
+	4. DOCTORS (profile , Edit ,DELETE, Update, Insert)
+	5. Add Doctor (Role will use)
+	6. view Doctor
+	7. patients
+	8. Manage Admin settings
+	9. Logout
+
+**Doctor Dashboard:
+	1. Appointment
+	2. Profile
+	3. Schedule update
+	4. Timing: shift timing edit , create , delete , update.
+	5. settings (edit password, delete account etc.) 
+	6. Logout
+
+
+//////////////////////////////////////////////////////
+-- Patients table
+CREATE TABLE patients (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    phone VARCHAR(20),
+    address TEXT,
+    gender ENUM('Male', 'Female', 'Other'),
+    age INT
+);
+
+-- Doctors table
+CREATE TABLE doctors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    phone VARCHAR(20),
+	education varchar(60),
+    specialization VARCHAR(255)
+);
+
+-- Appointments table
+CREATE TABLE appointments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT,
+    doctor_id INT,
+    appointment_datetime DATETIME,
+    status ENUM('Scheduled', 'Cancelled', 'Completed'),
+    FOREIGN KEY (patient_id) REFERENCES patients(id),
+    FOREIGN KEY (doctor_id) REFERENCES doctors(id)
+);
+
+-- Medical History table
+CREATE TABLE medical_history (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    patient_id INT,
+    medical_condition TEXT,
+    diagnosis TEXT,
+    prescription TEXT,
+    FOREIGN KEY (patient_id) REFERENCES patients(id)
+);
+
+-- Clinics / Hospitals table
+CREATE TABLE clinics (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    address TEXT,
+    phone VARCHAR(20)
+);
+
+-- Authentication table (Users)
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255),
+    password VARCHAR(255),
+    role ENUM('Patient', 'Doctor', 'Admin')
+);
+
+-- Schedulers/Calendars table...php artisan make:model schedule -mcr
+CREATE TABLE schedules (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    doctor_id INT,
+    day ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'),
+    start_time TIME,
+    end_time TIME,
+    FOREIGN KEY (doctor_id) REFERENCES doctors(id)
+
+
+);
+
+-- Notifications table
+CREATE TABLE notifications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    appointment_id INT,
+    notification_type ENUM('Email', 'SMS'),
+    notification_content TEXT,
+    FOREIGN KEY (appointment_id) REFERENCES appointments(id)
+);
+
+-- Payments table
+CREATE TABLE payments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    appointment_id INT,
+    amount DECIMAL(10, 2),
+    payment_status ENUM('Pending', 'Completed'),
+    billing_info TEXT,
+payment_type set('cash','bkash','nogod','upay','free')
+trxid VARCHAR(30) null
+    FOREIGN KEY (appointment_id) REFERENCES appointments(id)
+);
+
+-- Reports & Analytics table
+CREATE TABLE reports(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    appointment_id INT,
+    outcome TEXT,
+    appointment_date DATETIME,
+    FOREIGN KEY (appointment_id) REFERENCES appointments(id)
+);
+
+-- Settings table (optional)
+CREATE TABLE settings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    setting_name VARCHAR(255),
+    setting_value TEXT
+);
+
