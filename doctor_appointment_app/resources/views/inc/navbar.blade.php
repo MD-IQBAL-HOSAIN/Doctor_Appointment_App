@@ -9,7 +9,7 @@
     <div class="d-flex flex-row-reverse">
       <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="{{ URL('/') }}" aria-label="Bootstrap">
         <img src="./images/doclogo.jpg" alt="Logo" style="max-width: 150px; max-height: 70px;">
-        <span style="font-size: 1.5rem; font-weight: bold" class=" ">Doctor<br>Appointment</span>
+        <span style="font-size: 1.5rem; font-weight: bold;" >Doctor<br>Appointment</span>
       </a>
     </div>
      {{-- logo end--}}
@@ -31,18 +31,18 @@
           </ul>
         </li> --}}
         <li class="nav-item">
-          <a class="nav-link" href="{{ URL('departments') }}"><strong style="font-size: 1.2rem;">Departments</strong></a>
+          <a class="nav-link" href="{{ URL('departments') }}"><strong style="font-size: 1.2rem;color: darkcyan;">Departments</strong></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ URL('finddoctor') }}"><strong style="font-size: 1.2rem;">Find a Doctor</strong></a>
+          <a class="nav-link" href="{{ URL('finddoctor') }}"><strong style="font-size: 1.2rem;color: darkcyan;">Find a Doctor</strong></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ URL('bookappointment') }}"><strong style="font-size: 1.2rem;">Book Appointment</strong></a>
+          <a class="nav-link" href="{{ URL('bookappointment') }}"><strong style="font-size: 1.2rem;color: darkcyan;">Book Appointment</strong></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ URL('aboutus') }}"><strong style="font-size: 1.2rem;">About Us</strong></a>
+          <a class="nav-link" href="{{ URL('aboutus') }}"><strong style="font-size: 1.2rem; color: darkcyan;">About Us</strong></a>
         </li>
-        <li>
+        {{-- <li>
         @if (Route::has('login') && Route::has('logout'))
           @auth
             <li class="nav-item">
@@ -62,7 +62,7 @@
             @endif
           @endif
         @endif
-        </li>
+        </li> --}}
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

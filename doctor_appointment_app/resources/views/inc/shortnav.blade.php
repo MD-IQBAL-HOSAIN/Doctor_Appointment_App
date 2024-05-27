@@ -13,12 +13,33 @@
           </li>
         </ul>
         <ul class="navbar-nav ms-auto mb-lg-0">
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link text-white" href="{{ URL(' ') }}"><i class="bi bi-arrow-left"></i> Contact US | </a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="{{ URL(' ') }}"><i class="bi bi-file-arrow-down"></i> My Appointment</a>
-          </li>
+          </li> --}}
+        <li class="nav-item">
+        @if (Route::has('login') && Route::has('logout'))
+          @auth
+            <li class="nav-item">
+              <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button style="font-size: 1.0rem; color: white" class="nav-link btn btn-outline-warning" type="submit">{{ __('Log out') }}</button>
+              </form>
+            </li>
+          @else
+            <li class="nav-item">
+              <a style="font-size: 1.0rem; color: white" class="nav-link btn btn-outline-success" href="{{ route('login') }}">{{ __('Login') }} |</a>
+            </li>
+            @if (Route::has('register'))
+                <li class="nav-item">
+                  <a style="font-size: 1.0rem; color: white" class="nav-link btn btn-outline-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+            @endif
+          @endif
+        @endif
+        </li>
         </ul>
       </div>
     </div>
