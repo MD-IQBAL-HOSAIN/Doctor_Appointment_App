@@ -1,9 +1,11 @@
 <div class="mb-1 mt-1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
 <nav class="navbar navbar-expand-lg bg-body-tertiary" style="border-radius: 10px; box-shadow: 0 0 10px 0 black;">
   <div class="container-fluid">
     <div class="d-flex flex-row-reverse">
       <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="{{ URL('/') }}" aria-label="Bootstrap">
-        <img src="./images/doclogo.jpg" alt="Logo" style="max-width: 60pc; max-height: 60px;">
+        <img src="./images/doclogo.jpg" alt="Logo" style="max-width: 70pc; max-height: 70px;">
         <span style="font-size: 1.5rem; font-weight: bold" class=" ">Doctor Appointment</span>
       </a>
     </div>
@@ -12,7 +14,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown drop-style">
+        {{-- <li class="nav-item dropdown drop-style">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <strong style="font-size: 1.2rem;">Departments</strong>
           </a>
@@ -22,6 +24,9 @@
             <li><a class="dropdown-item" href="{{ URL('dental') }}"><strong style="font-size: 1.1rem;">Dental</strong></a></li>
             <li><a class="dropdown-item" href="{{ URL('psychology') }}"><strong style="font-size: 1.1rem;">Psychology</strong></a></li>
           </ul>
+        </li> --}}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ URL('departments') }}"><strong style="font-size: 1.2rem;">Departments</strong></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ URL('finddoctor') }}"><strong style="font-size: 1.2rem;">Find a Doctor</strong></a>
