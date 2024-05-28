@@ -4,6 +4,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DoctorProfileController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,7 +26,11 @@ Route::get('/bookappointment',[AppointmentController::class, 'index'])->name('ap
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    if (Auth::user()->role == 'admin')  {
+        return view('admindashboard');
+    } else {
+        return redirect('/');
+    }
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -35,3 +40,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+

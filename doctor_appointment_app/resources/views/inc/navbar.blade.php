@@ -8,7 +8,7 @@
     {{-- logo start--}}
     <div class="d-flex flex-row-reverse">
       <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="{{ URL('/') }}" aria-label="Bootstrap">
-        <img src="./images/doclogo.jpg" alt="Logo" style="max-width: 150px; max-height: 70px;">
+        <img src="{{ asset('images/doclogo.jpg') }}" alt="Logo" style="max-width: 150px; max-height: 70px;">
         <span style="font-size: 1.5rem; font-weight: bold;" >Doctor<br>Appointment</span>
       </a>
     </div>

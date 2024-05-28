@@ -3,9 +3,10 @@
     <footer class="bd-footer py-4 py-md-5 mt-5 bg-body-tertiary" >
       <div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
         <div class="row">
+          {{-- footer logo --}}
           <div class="col-lg-3 mb-3">
             <a class="d-inline-flex align-items-center mb-2 text-body-emphasis text-decoration-none" href="{{ URL('/') }}" aria-label="Bootstrap">
-              <img src="./images/doclogo.jpg" alt="Logo" style="max-width: 60pc; max-height: 60px;">
+              <img src="{{ asset('images/doclogo.jpg') }}" alt="Logo" style="max-width: 60pc; max-height: 60px;">
                <span style="font-size: 1.50rem; font-weight: bold" class=" ">Doctor Appointment</span>
              </a>
             <ul class="list-unstyled small">
