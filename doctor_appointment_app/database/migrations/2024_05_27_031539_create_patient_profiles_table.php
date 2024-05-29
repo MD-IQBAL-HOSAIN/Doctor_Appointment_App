@@ -15,6 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
+            $table->string('password');
+            $table->string('image');
+            $table->string('age');
+            $table->string('blood_group');
+            $table->string('medical_history');
+            $table->string('country');
             $table->string('phone');
             $table->string('address');
             $table->string('gender');
