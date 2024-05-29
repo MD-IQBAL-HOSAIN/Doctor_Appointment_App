@@ -6,10 +6,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            {{-- <h1>Departments</h1> --}}
-            <a href="{{ url('departments/create') }}" class="btn btn-outline-primary">Add Department</a>    
+            <h1 class="text-center">Departments</h1>              
         </div>
-    </div>
+      </div>
+      <div class="d-flex justify-content-end">
+          @if(auth()->user()->role === 'admin')
+              <a href="{{ URL('/dashboard') }}" class="text-decoration-none text-end btn btn-outline-primary mt-2 mb-2">Go To Dashboard</a>         
+          @endif
+      </div>
     <div>
         <div class="container-fluid p-2 text-center">
           <div class="row"> 

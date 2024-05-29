@@ -3,7 +3,7 @@
 
 <div class="container-fluid">      
  <div class="container">
-    <form action="{{Route('departments.store')}}" method="">
+    <form action="{{Route('departments.store')}}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
@@ -28,6 +28,7 @@
                 <strong>Successfully done!!</strong>
                 <p>{{ session('message')['message'] }}</p>
             </div>
+            <meta http-equiv="refresh" content="1;url={{ route('departments.index') }}" />
         @else
             <div class="alert alert-danger">
                 <strong>Unsuccessful!</strong>
@@ -38,4 +39,6 @@
  </div>
 </div>
 @endsection
+
+
 
