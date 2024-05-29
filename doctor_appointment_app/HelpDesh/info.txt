@@ -1,0 +1,6 @@
+For bootstrap change from tailwind go "AppServiceProvider.php"
+use Illuminate\Pagination\Paginator;
+ public function boot(): void
+    {
+        Paginator::useBootstrap();
+    }

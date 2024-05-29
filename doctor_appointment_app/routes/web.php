@@ -1,17 +1,17 @@
 <?php
 
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\AuthorAccessRole;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DoctorProfileController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-Route::get('/bookappointment', function () {
-    echo "BOOK APPOINTMENT page";
 });
 Route::get('/aboutus', function () {
     return view('aboutus');
@@ -22,6 +22,22 @@ Route::get('/departments/create', [DepartmentController::class, 'create'])->name
 Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
 Route::get('/finddoctor',[DoctorProfileController::class, 'index'])->name('doctor.index');
 Route::get('/bookappointment',[AppointmentController::class, 'index'])->name('appointment.index');
+
+// Route::middleware(AuthorAccessRole::class)->group(function () { 
+
+Route::get('/user',[UserController::class, 'index'])->name('user.index');
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+Route::get('/user/show',[UserController::class, 'show'])->name('user.show');
+Route::get('/user/create',[UserController::class, 'create'])->name('user.create')->name('user.create');
+Route::get('/user/destroy',[UserController::class, 'destroy'])->name('user.destroy');
+// ...
+Route::get('/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
+Route::patch('/user/update/{user}', [UserController::class, 'update'])->name('user.update');
+// ...
+// });
+
+
+
 
 
 
