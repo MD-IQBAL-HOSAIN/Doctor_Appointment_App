@@ -11,7 +11,7 @@
       </div>
       <div class="d-flex justify-content-end">
           @if(auth()->user()->role === 'admin')
-              <a href="{{ URL('/dashboard') }}" class="text-decoration-none text-end btn btn-outline-primary mt-2 mb-2">Go To Dashboard</a>         
+              <a href="{{ URL('/dashboard') }}" class="text-decoration-none text-end btn btn-outline-primary mt-2 mb-2">Go To Dashboard</a>      
           @endif
       </div>
     <div>
