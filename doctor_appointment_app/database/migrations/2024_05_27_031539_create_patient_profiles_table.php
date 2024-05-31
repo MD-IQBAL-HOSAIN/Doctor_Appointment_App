@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('phone');
             $table->string('address');
-            $table->string('gender');
+            $table->enum('gender', ['male', 'female', 'other'])->default('male');
             $table->timestamps();
         });
     }

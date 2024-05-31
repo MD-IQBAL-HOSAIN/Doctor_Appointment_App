@@ -15,13 +15,16 @@
                     <div class="card-header">
                         <h5 class="card-title">{{ $department->name }}</h5>
                     </div>
+                    <div class="card-header">
+                        <h5 class="card-title"><a href="">{{ $department->image }}Image</a></h5>
+                    </div>
                     <div class="card-body">
                         <p class="card-text">{{ $department->description }}</p>
                     </div>
                     <div class="card-footer">
                         <div class="btn-group">
-                            <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-outline-primary">Edit</a>
                             @if (auth()->user()->role == 'admin')
+                            <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-outline-primary">Edit</a>
                             <form style="display: inline;" action="{{ route('departments.destroy', $department->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this department?');">
                                 @csrf
                                 @method('DELETE') <!-- Ensure this line is present -->

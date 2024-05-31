@@ -4,8 +4,10 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthorAccessRole;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DoctorProfileController;
+use App\Http\Controllers\PatientProfileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserprofileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,13 +18,26 @@ Route::get('/aboutus', function () {
     return view('aboutus');
 });
 
+// Route::get('/user/profile',function(){
+//     return view('user.profile');
+//     });
+//patient profile
+Route::get('/patient', [PatientProfileController::class, 'index'])->name('patient.index')->middleware('auth');
+Route::get('/patient/create', [PatientProfileController::class, 'create'])->name('patient.create')->middleware('auth');
+Route::post('/patient', [PatientProfileController::class, 'store'])->name('patient.store')->middleware('auth');
+Route::get('/patient/edit/{patient_profile}', [PatientProfileController::class, 'edit'])->name('patient.edit')->middleware('auth');
+Route::put('/patient/update/{patient_profile}', [PatientProfileController::class, 'update'])->name('patient.update')->middleware('auth');
+Route::delete('/patient/destroy/{patient_profile}', [PatientProfileController::class, 'destroy'])->name('patient.destroy')->middleware('auth');
+
+
+
+//departments
 Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index')->middleware('auth');
 Route::get('/departments/show', [DepartmentController::class, 'show'])->name('departments.show');
 Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
 Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
 Route::get('/departments/edit/{department}', [DepartmentController::class, 'edit'])->name('departments.edit');
 Route::put('/departments/update/{department}', [DepartmentController::class, 'update'])->name('departments.update');
-
 Route::delete('/departments/destroy/{department}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
 
 
@@ -44,11 +59,7 @@ Route::delete('/user/destroy/{user}', [UserController::class, 'destroy'])->name(
 
 // });
 
-
-
-
-
-//dashboard
+// Admin dashboard
 Route::get('/dashboard', function () {
     if (Auth::user()->role == 'admin')  {
         return view('admindashboard');
