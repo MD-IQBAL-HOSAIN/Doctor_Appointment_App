@@ -12,13 +12,7 @@
             <a class="nav-link text-white" href="mailto:author@example.com"><i class="bi bi-envelope"></i> Email: author@example.com</a>
           </li>
         </ul>
-        <ul class="navbar-nav ms-auto mb-lg-0">
-          {{-- <li class="nav-item">
-            <a class="nav-link text-white" href="{{ URL(' ') }}"><i class="bi bi-arrow-left"></i> Contact US | </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="{{ URL(' ') }}"><i class="bi bi-file-arrow-down"></i> My Appointment</a>
-          </li> --}}
+        <ul class="navbar-nav ms-auto mb-lg-0">         
         <li class="nav-item">
         @if (Route::has('login') && Route::has('logout'))
           @auth

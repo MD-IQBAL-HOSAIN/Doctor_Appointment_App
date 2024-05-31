@@ -1,7 +1,8 @@
 @extends('layouts.main', ['title' => 'Departments Form'])
 @section('content')  
 
-<div class="container-fluid">      
+<div class="container-fluid">     
+    <h4 class="text-center mt-2">Department Form</h4> 
  <div class="container">
     <form action="{{Route('departments.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -24,7 +25,16 @@
                 <option value="0">Inactive</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="d-flex justify-content-between">
+            <div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            @if (auth()->user()->role == 'admin')
+                <div>
+                <a href="{{ URL('/dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+                </div>
+            @endif
+        </div>
     </form>
     @if (Session::has('message')) 
         @if (Session::get('message')['success']) 
