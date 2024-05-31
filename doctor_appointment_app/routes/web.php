@@ -23,11 +23,13 @@ Route::get('/aboutus', function () {
 //     });
 //patient profile
 Route::get('/patient', [PatientProfileController::class, 'index'])->name('patient.index')->middleware('auth');
+Route::get('/patient/profile', [PatientProfileController::class, 'patient'])->name('patient.patient')->middleware('auth');
 Route::get('/patient/create', [PatientProfileController::class, 'create'])->name('patient.create')->middleware('auth');
 Route::post('/patient', [PatientProfileController::class, 'store'])->name('patient.store')->middleware('auth');
 Route::get('/patient/edit/{patient_profile}', [PatientProfileController::class, 'edit'])->name('patient.edit')->middleware('auth');
 Route::put('/patient/update/{patient_profile}', [PatientProfileController::class, 'update'])->name('patient.update')->middleware('auth');
 Route::delete('/patient/destroy/{patient_profile}', [PatientProfileController::class, 'destroy'])->name('patient.destroy')->middleware('auth');
+
 
 
 

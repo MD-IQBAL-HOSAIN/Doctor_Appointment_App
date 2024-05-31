@@ -14,7 +14,7 @@
         </ul>
         <ul class="navbar-nav ms-auto mb-lg-0"> 
           <li class="nav-item">
-            <a class="nav-link text-white" href="{{ url('/patient') }}">User Profile |</a>
+            <a class="nav-link text-white" href="{{ url('/patient/profile') }}">Profile |</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="{{ route('dashboard') }}">Dashboard |</a>

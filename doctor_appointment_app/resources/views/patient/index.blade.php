@@ -38,6 +38,7 @@
         </div>
         @endforeach
     </div>
+    {{ $patient_profiles->links() }}
 </div>
 @endsection
 
@@ -89,5 +90,6 @@
     </table>
     @endif
 </div> --}}
+
 
 

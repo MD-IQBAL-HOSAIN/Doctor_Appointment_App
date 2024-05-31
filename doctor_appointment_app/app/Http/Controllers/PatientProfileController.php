@@ -12,7 +12,7 @@ class PatientProfileController extends Controller
      */
     public function index()
     {
-        $patient_profiles = patient_profile::all();
+        $patient_profiles = patient_profile::paginate(6);
         return view('patient.index', compact('patient_profiles'));
             
     }
@@ -86,5 +86,10 @@ class PatientProfileController extends Controller
     {
         $patient_profile->delete();
         return redirect()->route('patient.index')->with('success', 'Patient profile deleted successfully!');
+    }
+
+    public function patient(patient_profile $patient_profile)
+    {
+       return view('patient.patient', compact('patient_profile'));
     }
 }

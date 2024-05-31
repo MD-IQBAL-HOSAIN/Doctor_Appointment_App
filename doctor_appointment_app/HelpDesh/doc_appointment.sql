@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2024 at 03:43 PM
+-- Generation Time: May 31, 2024 at 08:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -71,9 +71,23 @@ CREATE TABLE `cache_locks` (
 
 CREATE TABLE `departments` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT 1,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`id`, `name`, `image`, `description`, `is_active`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'Gastrology', NULL, 'Gastric', 1, NULL, '2024-05-30 09:52:24', '2024-05-30 09:52:24'),
+(2, 'Psychology', NULL, 'we give Psychology treatment here.', 1, NULL, '2024-05-30 09:54:54', '2024-05-30 09:54:54'),
+(4, 'Nurology', NULL, 'asdf', 1, NULL, '2024-05-31 02:24:09', '2024-05-31 02:24:09');
 
 -- --------------------------------------------------------
 
@@ -85,7 +99,17 @@ CREATE TABLE `doctor_profiles` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `speciality` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
+  `education` varchar(255) NOT NULL,
+  `experience` varchar(255) NOT NULL,
+  `fees` varchar(255) NOT NULL,
+  `about` varchar(255) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `degree` varchar(255) NOT NULL,
+  `university` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -194,9 +218,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '0001_01_01_000000_create_users_table', 1),
 (8, '0001_01_01_000001_create_cache_table', 1),
 (9, '0001_01_01_000002_create_jobs_table', 1),
-(10, '2024_05_26_202914_create_departments_table', 2),
-(13, '2024_05_27_031458_create_doctor_profiles_table', 3),
-(14, '2024_05_27_031539_create_patient_profiles_table', 3),
 (15, '2024_05_27_031739_create_appointments_table', 4),
 (16, '2024_05_27_042112_create_medical_histories_table', 5),
 (17, '2024_05_27_042331_create_hospitals_table', 5),
@@ -204,7 +225,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2024_05_27_131220_create_notifications_table', 7),
 (20, '2024_05_27_132206_create_payments_table', 8),
 (21, '2024_05_27_132722_create_reports_table', 9),
-(22, '2024_05_27_132939_create_settings_table', 9);
+(22, '2024_05_27_132939_create_settings_table', 9),
+(23, '2024_05_27_031458_create_doctor_profiles_table', 10),
+(26, '2024_05_26_202914_create_departments_table', 11),
+(27, '2024_05_27_031539_create_patient_profiles_table', 12);
 
 -- --------------------------------------------------------
 
@@ -243,12 +267,29 @@ CREATE TABLE `patient_profiles` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `age` varchar(255) NOT NULL,
+  `blood_group` varchar(255) NOT NULL,
+  `medical_history` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `gender` varchar(255) NOT NULL,
+  `gender` enum('male','female','other') NOT NULL DEFAULT 'male',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `patient_profiles`
+--
+
+INSERT INTO `patient_profiles` (`id`, `name`, `email`, `password`, `image`, `age`, `blood_group`, `medical_history`, `country`, `phone`, `address`, `gender`, `created_at`, `updated_at`) VALUES
+(1, 'Bijoy Chowdhury', 'mdbijoy@gmail.com', 'aaaaaaaa', 'D:\\xampp\\tmp\\php42D1.tmp', '28', 'B+', 'fdsfadsfads', 'Bangladesh', '01620745692', 'Mirpur 10', 'male', '2024-05-31 10:27:48', '2024-05-31 11:56:59'),
+(3, 'Abdullah Al Mamun', 'mamun@gmail.com', 'aaaaaaaa', 'images/DnPVzeAuGBrCbwaItaA4GreKXNm6oQlw6qe5LRff.webp', '28', 'B+', 'aaaaaaaa', 'Bangladesh', '01620745692', 'Mirpur 2', 'male', '2024-05-31 11:25:20', '2024-05-31 11:25:20'),
+(4, 'Sulaiman Sukhon', 'sukhon@gmail.com', 'aaaaaaaa', 'images/Ie2rv47RoLqBUFbVVFvnjXZtRsXuZUXUiygqCrA7.jpg', '40', 'O-', 'psychological problem', 'Bangladesh', '01620745692', 'Agargaon', 'male', '2024-05-31 11:42:54', '2024-05-31 11:42:54'),
+(5, 'Maisha', 'maisa@gmail.com', 'aaaaaaaa', 'images/2sxxAtVPSsMpE4fY3PcqMiflx5mHWcViLIHjPJ1p.jpg', '25', 'A-', 'kjfhgjytd', 'Bangladesh', '01620745692', 'Mirpur 10', 'female', '2024-05-31 12:13:56', '2024-05-31 12:13:56'),
+(6, 'Sumaiya', 'sumaiya@gmail.com', 'aaaaaaaa', 'images/5b55sjHwhby1eUgC8F26BghnRXy38eZa0Mc8zvDQ.jpg', '35', 'O-', 'yjuytt', 'Bangladesh', '01620745692', 'Mirpur 10', 'female', '2024-05-31 12:19:54', '2024-05-31 12:19:54');
 
 -- --------------------------------------------------------
 
@@ -319,8 +360,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('5QcZY0y8laOalbfNQlk8FwcyBksUuFrwvF7K2XHY', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYXhDYXFWRzZQZExUVGlsS1RrNVpTU2l6dXlKTEZ5YmI3TXhTb29ZVSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6ODk6Imh0dHA6Ly9sb2NhbGhvc3QvTGFyYXZlbC9Eb2N0b3JfQXBwb2ludG1lbnRfQXBwL2RvY3Rvcl9hcHBvaW50bWVudF9hcHAvcHVibGljL2RlcGFydG1lbnRzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1716795209),
-('iUSwNXfwbATNPbRazjxBa1wRzz1e0UCi4u7yGW2Z', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicWxERmJhVzhrNG1LS2xqZmFaSmdUSzV2M3dNNmJ6dDYya29XcWJySSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Nzc6Imh0dHA6Ly9sb2NhbGhvc3QvTGFyYXZlbC9Eb2N0b3JfQXBwb2ludG1lbnRfQXBwL2RvY3Rvcl9hcHBvaW50bWVudF9hcHAvcHVibGljIjt9fQ==', 1716758961);
+('vNACHvfda6RlIjXGrk2dsU1mgNNH4GS3lNOWKRLL', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUjNpU0lhNlZwaXhJSXoxNHdTN0ZOTzZVa0xkVjVjQ2lWYlRMRmFReiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6OTM6Imh0dHA6Ly9sb2NhbGhvc3QvTGFyYXZlbC9Eb2N0b3JfQXBwb2ludG1lbnRfQXBwL2RvY3Rvcl9hcHBvaW50bWVudF9hcHAvcHVibGljL3BhdGllbnQvcHJvZmlsZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1717181081);
 
 -- --------------------------------------------------------
 
@@ -359,9 +399,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', NULL, '$2y$12$1L7V1g5q823v0K5KlBdMNuARBjdFzz7THaW9spIvfZnoPpCrIkMBm', 'admin', NULL, '2024-05-26 13:36:13', '2024-05-26 13:36:13'),
+(1, 'Bijoy', 'admin@gmail.com', NULL, '$2y$12$1L7V1g5q823v0K5KlBdMNuARBjdFzz7THaW9spIvfZnoPpCrIkMBm', 'admin', 'Mn3Gbw1Mvhaf4I9uKytvxFvRbs1hvOZ5TfRUrSGOFUsKkdaQdF8qJyKo9Dwu', '2024-05-26 13:36:13', '2024-05-26 13:36:13'),
 (2, 'patient', 'patient@gmail.com', NULL, '$2y$12$TeBc02rurVlU1ER3V2PKEehYpWhGFVHKaniR5Z9tNZFlaUmxURTva', 'patient', NULL, '2024-05-26 13:37:03', '2024-05-26 13:37:03'),
-(3, 'doctor', 'doctor@gmail.com', NULL, '$2y$12$h/TCVN4rjqEZXaM6IMU7nepknqAOOudP5Oa1ezIRdpuRSZKZnzuKu', 'doctor', NULL, '2024-05-26 13:37:38', '2024-05-26 13:37:38');
+(3, 'doctor', 'doctor@gmail.com', NULL, '$2y$12$h/TCVN4rjqEZXaM6IMU7nepknqAOOudP5Oa1ezIRdpuRSZKZnzuKu', 'doctor', NULL, '2024-05-26 13:37:38', '2024-05-26 13:37:38'),
+(4, 'Misty', 'misty@gmail.com', NULL, '$2y$12$PO3IVpxHTj3vb2xGQEweXuPAaKKhezplyO5bjdET0bTzRMYWSq6Lm', 'admin', NULL, '2024-05-29 13:10:42', '2024-05-29 22:27:17'),
+(5, 'Dr. Tasnim Zara', 'zara@gmail.com', NULL, '$2y$12$398udQDGsI3fPeuq38R22eLeCLpGFOhmPDRUR5LBoD.HlqJDORE/6', 'patient', 'BDDVeedsLjDLXcIYVRKftzYrR5UnftpbNHF6GSeoyR7tlqJ5s3XIasSXaE1l', '2024-05-29 13:17:54', '2024-05-29 15:50:31'),
+(6, 'Dr. Mosaidul Isalam', 'mosaidul@gmail.com', NULL, '$2y$12$iQuLynTRodNqnn7dZHpYwess8fB36f9V.MG90hvmYTWLwAKh08sey', 'patient', NULL, '2024-05-29 13:20:08', '2024-05-29 13:20:08'),
+(7, 'Adil', 'adil@gmail.com', NULL, '$2y$12$H.sjVun4E/fGY9jBq45hb.tJ0dISrEvpbxuNucMQ7MCIb14Ls9i2a', 'admin', NULL, '2024-05-29 14:34:48', '2024-05-29 15:12:11');
 
 --
 -- Indexes for dumped tables
@@ -514,7 +558,7 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `doctor_profiles`
@@ -550,7 +594,7 @@ ALTER TABLE `medical_histories`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -562,7 +606,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `patient_profiles`
 --
 ALTER TABLE `patient_profiles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -592,7 +636,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
