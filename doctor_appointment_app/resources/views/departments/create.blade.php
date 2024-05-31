@@ -3,7 +3,7 @@
 
 <div class="container-fluid">      
  <div class="container">
-    <form action="{{Route('departments.store')}}" method="POST">
+    <form action="{{Route('departments.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
@@ -12,6 +12,10 @@
         <div class="mb-3">
             <label for="description" class="form-label"> Description</label>
             <textarea class="form-control" name="description" id="description" placeholder="Enter Department Description"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" name="image" id="image">
         </div>
         <div class="mb-3">
             <label for="status" class="form-label">Status</label>

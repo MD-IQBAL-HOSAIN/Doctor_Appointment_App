@@ -10,6 +10,7 @@ class department extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'image',
         'description',
         'is_active',
     ];
