@@ -66,30 +66,55 @@ class DepartmentController extends Controller
      */
     public function show(department $department)
     {
-        //
+        return view('departments.show',compact('department'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(department $department)
+    public function edit($id)
     {
-        //
+        // Find the department by ID
+        $department = Department::findOrFail($id);
+        
+        // Pass the department to the edit view
+        return view('departments.edit', compact('department'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, department $department)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        // Find the department by ID
+        $department = Department::findOrFail($id);
+        
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'status' => 'required|boolean',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,avif,svg|max:2048',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     */
+        // If image is uploaded, update the image
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('images'), $imageName);
+            $validatedData['image'] = $imageName;
+        }
+
+        // Update the department with the validated data
+        $department->update($validatedData);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Department updated successfully!');
+    }
     public function destroy(department $department)
     {
-        //
+        try {
+            $department->delete();
+            return redirect()->back()->with('success', 'Department deleted successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error deleting department!');
+        }
     }
 }

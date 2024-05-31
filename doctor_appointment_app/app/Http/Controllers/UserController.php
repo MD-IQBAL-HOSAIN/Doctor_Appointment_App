@@ -79,13 +79,14 @@ public function update(Request $request, User $user)
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
-    {
-        $user->delete();
+  // UserController.php
+public function destroy(User $user)
+{
+    $user->delete();
 
-        return redirect()->route('user.index')
-            ->with('status', 'User deleted successfully!');
-    }
+    return redirect()->route('user.index')->with('status', 'User deleted successfully!');
+}
+
 }
 
 

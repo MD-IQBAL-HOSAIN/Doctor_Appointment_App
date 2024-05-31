@@ -36,23 +36,24 @@
             @endif
         </div>
     </form>
-    @if (Session::has('message')) 
-        @if (Session::get('message')['success']) 
-            <div class="alert alert-success">
-                <strong>Successfully done!!</strong>
-                <p>{{ session('message')['message'] }}</p>
-            </div>
-            <meta http-equiv="refresh" content="1;url={{ route('departments.index') }}" />
-        @else
-            <div class="alert alert-danger">
-                <strong>Unsuccessful!</strong>
-                <p>{{ session('message')['message'] }}</p>
-            </div>
-        @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        <meta http-equiv="refresh" content="1;url={{ route('departments.index') }}" />
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        <meta http-equiv="refresh" content="1;url={{ route('departments.index') }}" />
     @endif
  </div>
 </div>
 @endsection
-
-
 

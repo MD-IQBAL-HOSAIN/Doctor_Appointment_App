@@ -5,7 +5,6 @@ use App\Http\Controllers\AuthorAccessRole;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DoctorProfileController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,20 +15,32 @@ Route::get('/', function () {
 Route::get('/aboutus', function () {
     return view('aboutus');
 });
-Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index')->middleware('auth');
-Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
-Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
-Route::get('/finddoctor',[DoctorProfileController::class, 'index'])->name('doctor.index')->middleware('auth');
-Route::get('/bookappointment',[AppointmentController::class, 'index'])->name('appointment.index')->middleware('auth');
-// Route::middleware(AuthorAccessRole::class)->group(function () { 
 
+Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index')->middleware('auth');
+Route::get('/departments/show', [DepartmentController::class, 'show'])->name('departments.show');
+Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
+Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
+Route::get('/departments/edit/{department}', [DepartmentController::class, 'edit'])->name('departments.edit');
+Route::put('/departments/update/{department}', [DepartmentController::class, 'update'])->name('departments.update');
+
+Route::delete('/departments/destroy/{department}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
+
+
+//Find doctor
+Route::get('/finddoctor',[DoctorProfileController::class, 'index'])->name('doctor.index')->middleware('auth');
+//book appointment
+Route::get('/bookappointment',[AppointmentController::class, 'index'])->name('appointment.index')->middleware('auth');
+
+
+// Route::middleware(AuthorAccessRole::class)->group(function () { 
+    //users
 Route::get('/user',[UserController::class, 'index'])->name('user.index');
 Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
 Route::get('/user/show',[UserController::class, 'show'])->name('user.show');
 Route::get('/user/create',[UserController::class, 'create'])->name('user.create')->name('user.create');
-Route::get('/user/destroy',[UserController::class, 'destroy'])->name('user.destroy');
 Route::get('/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
 Route::patch('/user/update/{user}', [UserController::class, 'update'])->name('user.update');
+Route::delete('/user/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
 // });
 
@@ -37,7 +48,7 @@ Route::patch('/user/update/{user}', [UserController::class, 'update'])->name('us
 
 
 
-
+//dashboard
 Route::get('/dashboard', function () {
     if (Auth::user()->role == 'admin')  {
         return view('admindashboard');
@@ -46,6 +57,7 @@ Route::get('/dashboard', function () {
     }
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

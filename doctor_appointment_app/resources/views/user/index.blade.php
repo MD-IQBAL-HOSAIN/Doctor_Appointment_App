@@ -24,12 +24,14 @@
                 <td>{{ $item->role }}</td>
                 <td>
                     <a class="btn btn-outline-primary" href="{{ route('user.edit', $item->id) }}">Edit</a>
-                    <form style="display: inline;" action="{{ route('user.destroy', $item->id) }}" method="POST">
+                    <form style="display: inline;" action="{{ route('user.destroy', $item->id) }}" method="POST"
+                        onsubmit="return confirm('Are you sure?')">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-outline-danger" type="submit">Delete</button>
+                        <button class="btn btn-outline-danger" type="submit"
+                            onclick="return confirm('Are you sure Are you sure want to delete?')">Delete</button>
                     </form>
-                </td>
+                </td>                
                 <td></td>
             </tr>
             @endforeach
