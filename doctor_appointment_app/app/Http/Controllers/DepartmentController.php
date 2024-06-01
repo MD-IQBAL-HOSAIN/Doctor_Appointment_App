@@ -39,13 +39,18 @@ class DepartmentController extends Controller
                  'name' => 'required|string|max:255',
                  'description' => 'nullable|string',
                  'status' => 'required|boolean',
+                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
              ]);
+             $imagePath = $request->file('image')->store('department', 'public');
+
      
              // Create a new department instance
              $department = new department([
                  'name' => $validatedData['name'],
                  'description' => $validatedData['description'],
                  'is_active' => $validatedData['status'],
+                 'image' => $imagePath
+                 
              ]);
      
              // Save the department to the database

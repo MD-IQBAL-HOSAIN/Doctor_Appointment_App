@@ -34,13 +34,14 @@ Route::delete('/patient/destroy/{patient_profile}', [PatientProfileController::c
 
 
 //departments
-Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index')->middleware('auth');
+Route::resource('/departments', DepartmentController::class);
+/* Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index')->middleware('auth');
 Route::get('/departments/show', [DepartmentController::class, 'show'])->name('departments.show');
 Route::post('/departments/store', [DepartmentController::class, 'store'])->name('departments.store');
 Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
 Route::get('/departments/edit/{department}', [DepartmentController::class, 'edit'])->name('departments.edit');
 Route::put('/departments/update/{department}', [DepartmentController::class, 'update'])->name('departments.update');
-Route::delete('/departments/destroy/{department}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
+Route::delete('/departments/destroy/{department}', [DepartmentController::class, 'destroy'])->name('departments.destroy'); */
 
 
 //Find doctor

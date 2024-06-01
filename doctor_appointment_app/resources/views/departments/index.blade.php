@@ -16,7 +16,7 @@
                         <h5 class="card-title">{{ $department->name }}</h5>
                     </div>
                     <div class="card-header">
-                        <h5 class="card-title"><a href="">{{ $department->image }}Image</a></h5>
+                        <h5 class="card-title"><a href=""> <img src="{{ asset('storage/' . $department->image) }}" alt="" class="img-fluid"></a></h5>
                     </div>
                     <div class="card-body">
                         <p class="card-text">{{ $department->description }}</p>
