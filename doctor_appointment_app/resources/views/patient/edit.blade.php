@@ -17,10 +17,16 @@
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password" name="password" required>
     </div>
-    <div class="mb-3">
+    {{-- <div class="mb-3">
         <label for="image" class="form-label">Image</label>
         <input type="file" class="form-control" id="image" name="image" required>
+    </div> --}}
+    <div class="mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input type="file" class="form-control" id="image" name="image"> <!-- Allow users to upload a new image -->
+        <img src="{{ asset('storage/' . $patient_profile->image) }}" class="img-thumbnail mt-2" alt="Current Image" width="100"> <!-- Display current image -->
     </div>
+    
     <div class="mb-3">
         <label for="age" class="form-label">Age</label>
         <input type="text" class="form-control" id="age" name="age" value="{{$patient_profile->age}}" required>

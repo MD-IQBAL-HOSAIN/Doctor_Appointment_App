@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\patient_profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PatientProfileController extends Controller
 {
@@ -33,11 +34,42 @@ class PatientProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, patient_profile $patient_profile)
+   /*  public function update(Request $request, patient_profile $patient_profile)
     {
         $patient_profile->update($request->all());
         return redirect()->route('patient.index')->with('success', 'Patient profile updated successfully!');
+    } */
+    //..............................
+    public function update(Request $request, patient_profile $patient_profile)
+{
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255|unique:patient_profiles,email,'.$patient_profile->id,
+        'password' => 'required|string|min:6',
+        'age' => 'required|numeric',
+        'blood_group' => 'required|string|max:10',
+        'medical_history' => 'required|string',
+        'country' => 'required|string|max:255',
+        'phone' => 'required|string|max:20',
+        'address' => 'required|string',
+        'gender' => 'required|string|max:10',
+    ]);
+
+    if ($request->hasFile('image')) {
+        // Delete old image
+        Storage::delete('public/' . $patient_profile->image);
+
+        // Upload new image
+        $imagePath = $request->file('image')->store('department', 'public');
+        $validatedData['image'] = $imagePath;
     }
+
+    $patient_profile->update($validatedData);
+    
+    return redirect()->route('patient.index')->with('success', 'Patient profile updated successfully!');
+}
+
+    //..............................
 
     /**
      * Remove the specified resource from storage.
@@ -61,7 +93,7 @@ class PatientProfileController extends Controller
 
         // Handle image upload
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
+            $imagePath = $request->file('image')->store('department', 'public');
             $validatedData['image'] = $imagePath;
         }
         

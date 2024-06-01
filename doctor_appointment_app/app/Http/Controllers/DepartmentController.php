@@ -4,32 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DepartmentController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     */
+{    
+ //...............................index..............................................................
     public function index()
     {
-        // Fetch all departments from the database
-        $departments = Department::all();
-
-        // Pass the departments to the view
+        // Fetch all departments from the database and paginate them
+        $departments = Department::paginate(6);
         return view('departments.index', compact('departments'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    //...............................create..............................................................
     public function create()
     {
        return view('departments.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+       //...............................store..............................................................
 
      public function store(Request $request)
      {
@@ -43,6 +36,11 @@ class DepartmentController extends Controller
              ]);
              $imagePath = $request->file('image')->store('department', 'public');
 
+             //for resize
+            /*  $imagePath = $request->file('image')->store('department', 'public');
+             $image = Image::make(storage_path('app/public/' . $imagePath))->resize(1024, 576);             
+             $image->save();
+            */
      
              // Create a new department instance
              $department = new department([
@@ -66,17 +64,17 @@ class DepartmentController extends Controller
      
 
 
-    /**
-     * Display the specified resource.
-     */
+   //...............................store..............................................................
+
     public function show(department $department)
     {
         return view('departments.show',compact('department'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
+
+//...............................edit..............................................................
+
     public function edit($id)
     {
         // Find the department by ID
@@ -86,6 +84,7 @@ class DepartmentController extends Controller
         return view('departments.edit', compact('department'));
     }
 
+//...............................update..............................................................
     public function update(Request $request, $id)
     {
         // Find the department by ID
@@ -101,18 +100,23 @@ class DepartmentController extends Controller
 
         // If image is uploaded, update the image
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = $image->getClientOriginalName();
-            $image->move(public_path('images'), $imageName);
-            $validatedData['image'] = $imageName;
+            // Delete old image
+            Storage::delete('public/' . $department->image);
+
+            // Upload new image
+            $imagePath = $request->file('image')->store('department', 'public');
+            $validatedData['image'] = $imagePath;
         }
 
         // Update the department with the validated data
         $department->update($validatedData);
 
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'Department updated successfully!');
+        return redirect()->route('departments.index')->with('success', 'Department updated successfully!');
     }
+
+   //...............................destroy..............................................................
+
     public function destroy(department $department)
     {
         try {

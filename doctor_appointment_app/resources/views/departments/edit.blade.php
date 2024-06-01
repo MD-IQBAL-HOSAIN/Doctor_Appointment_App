@@ -18,6 +18,7 @@
         <div class="mb-3">
             <label for="image" class="form-label">Image</label>
             <input type="file" class="form-control" name="image" id="image">
+            <img src="{{ asset('storage/' . $department->image) }}" class="img-thumbnail mt-2" alt="Current Image" width="100">
         </div>
         <div class="mb-3">
             <label for="status" class="form-label">Status</label>
