@@ -2,6 +2,9 @@
 @section('content')
 <div class="container">
     <h1 class="text-center">User list page</h1>
+    <div>
+        <a class="btn btn-outline-primary mt-2 mb-2" href="{{ url('/user/create') }}">Add user</a>
+    </div>
     <table class="table table-bordered table-dark">
         <thead>
             <tr>
@@ -10,8 +13,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Actions</th>
-                <th><a class="btn btn-outline-primary" href="{{ url('/user/create') }}">Add user</a></th>
+                <th>Actions</th>                
             </tr>
         </thead>
         <tbody>
@@ -31,8 +33,7 @@
                         <button class="btn btn-outline-danger" type="submit"
                             onclick="return confirm('Are you sure Are you sure want to delete?')">Delete</button>
                     </form>
-                </td>                
-                <td></td>
+                </td>
             </tr>
             @endforeach
         </tbody>

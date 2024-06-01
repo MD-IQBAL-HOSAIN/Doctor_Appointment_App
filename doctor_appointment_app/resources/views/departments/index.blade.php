@@ -13,7 +13,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">{{ $department->name }}</h5>
+                        <h5 class="card-title">{{ $department->name }} Department</h5>
                     </div>
                     <div class="card-header">
                         <h5 class="card-title">
@@ -23,7 +23,7 @@
                         </h5>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">{{ $department->description }}</p>
+                        <p class="card-text">Description : {{ $department->description }}</p>
                     </div>
                     <div class="card-footer">
                         <div class="btn-group">
