@@ -1,4 +1,8 @@
+
+@extends('layouts.main2', ['title' => 'Admin Dashboard'])
+@section('content')
 <x-app-layout>
+    <input type="text" class="form-control" name="" id="" placeholder="prove for bootstrap">
     
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
@@ -265,3 +269,4 @@
             </div>
             <!-- Widgets End -->
         </x-app-layout>
+        @endsection

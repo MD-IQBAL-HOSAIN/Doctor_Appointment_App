@@ -16,15 +16,6 @@
         </div>
         <div class="navbar-nav w-100">
             <a href="{{ route('dashboard') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            {{-- <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="button.html" class="dropdown-item">Buttons</a>
-                    <a href="typography.html" class="dropdown-item">Typography</a>
-                    <a href="element.html" class="dropdown-item">Other Elements</a>
-                </div>
-            </div> --}}
-            {{-- <a href="{{ url('departments/create') }}" class="btn btn-outline-primary">Add Department</a>   --}}
             <a href="{{ url('departments') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Departments</a>
             <a href="{{ route('appointment.index') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Appointments</a>
             <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Create Appointment</a>
