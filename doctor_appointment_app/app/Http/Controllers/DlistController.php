@@ -13,7 +13,7 @@ class DlistController extends Controller
      */
     public function index()
     {
-        $departments =department::paginate(6);
+        $departments =department::paginate(7);
         return view('admin.departments', compact('departments'));
     }
 

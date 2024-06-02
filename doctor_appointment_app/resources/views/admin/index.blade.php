@@ -75,7 +75,7 @@
 
 
     <!-- Recent Sales Start -->
-    @include('admin.layouts.departmentlist')
+    {{-- @include('admin.layouts.departmentlist') --}}
     <!-- Recent Sales End -->
 
 
