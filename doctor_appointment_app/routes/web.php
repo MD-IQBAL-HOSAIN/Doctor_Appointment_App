@@ -8,6 +8,7 @@ use App\Http\Controllers\DoctorProfileController;
 use App\Http\Controllers\MyprofileController;
 use App\Http\Controllers\PatientProfileController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UlistController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserprofileController;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ use App\Http\Middleware\Admin;
 use App\Http\Middleware\Doctor;
 use App\Http\Middleware\Patient;
 use App\Models\dlist;
+use App\Models\ulist;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,8 +29,8 @@ Route::get('/aboutus', function () {
 
 //using admin middleware
 Route::middleware(Admin::class)->group(function () {
-       //Departmentlist(tushar)
-Route::resource('/dlist',DlistController::class)->names('dlist');
+    //Departmentlist(tushar)
+    Route::resource('/dlist',DlistController::class)->names('dlist');
 });
 //using patient middleware
 Route::middleware(Patient::class)->group(function () {
@@ -66,7 +68,7 @@ Route::resource('/myprofile', MyprofileController::class)->only(['index', 'store
 // Admin dashboard
 Route::get('/dashboard', function () {
     if (Auth::user()->role == 'admin')  {
-        return view('admin.index');
+        return view('admin.admindashboard');
     } else {
         return redirect('/');
     }
