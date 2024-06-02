@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthorAccessRole;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DlistController;
 use App\Http\Controllers\DoctorProfileController;
 use App\Http\Controllers\MyprofileController;
 use App\Http\Controllers\PatientProfileController;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\Doctor;
 use App\Http\Middleware\Patient;
+use App\Models\dlist;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,7 +27,8 @@ Route::get('/aboutus', function () {
 
 //using admin middleware
 Route::middleware(Admin::class)->group(function () {
-       
+       //Departmentlist(tushar)
+Route::resource('/dlist',DlistController::class)->names('dlist');
 });
 //using patient middleware
 Route::middleware(Patient::class)->group(function () {
@@ -45,6 +48,8 @@ Route::resource('/patient', PatientProfileController::class)->middleware('auth')
 //departments
 Route::resource('/departments', DepartmentController::class)->middleware('auth');
 
+
+
 //Find doctor
 Route::get('/finddoctor',[DoctorProfileController::class, 'index'])->name('doctor.index')->middleware('auth');
 
@@ -61,7 +66,7 @@ Route::resource('/myprofile', MyprofileController::class)->only(['index', 'store
 // Admin dashboard
 Route::get('/dashboard', function () {
     if (Auth::user()->role == 'admin')  {
-        return view('admindashboard');
+        return view('admin.index');
     } else {
         return redirect('/');
     }

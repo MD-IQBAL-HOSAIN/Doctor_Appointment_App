@@ -16,7 +16,7 @@
         </div>
         <div class="navbar-nav w-100">
             <a href="{{ route('dashboard') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <a href="{{ url('departments') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Departments</a>
+            <a href="{{ url('dlist') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Departments</a>
             <a href="{{ route('appointment.index') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Appointments</a>
             <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Create Appointment</a>
             <a href="{{ route('user.index') }}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>All User</a>           
