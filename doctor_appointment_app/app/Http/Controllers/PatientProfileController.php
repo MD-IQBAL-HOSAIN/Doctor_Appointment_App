@@ -30,16 +30,8 @@ class PatientProfileController extends Controller
      {
          return view('patient.edit', compact('patient_profile'));
      }
-     
-    /**
-     * Update the specified resource in storage.
-     */
-   /*  public function update(Request $request, patient_profile $patient_profile)
-    {
-        $patient_profile->update($request->all());
-        return redirect()->route('patient.index')->with('success', 'Patient profile updated successfully!');
-    } */
-    //..............................
+
+    //...............update start...............
     public function update(Request $request, patient_profile $patient_profile)
 {
     $validatedData = $request->validate([
@@ -68,12 +60,9 @@ class PatientProfileController extends Controller
     
     return redirect()->route('patient.index')->with('success', 'Patient profile updated successfully!');
 }
+    //.............update end.................
 
-    //..............................
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function store(Request $request)
     {
         // Validate the incoming request data
@@ -120,8 +109,4 @@ class PatientProfileController extends Controller
         return redirect()->route('patient.index')->with('success', 'Patient profile deleted successfully!');
     }
 
-    public function patient(patient_profile $patient_profile)
-    {
-       return view('patient.patient', compact('patient_profile'));
-    }
 }
