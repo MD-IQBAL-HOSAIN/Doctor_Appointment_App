@@ -19,17 +19,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        {{-- <li class="nav-item dropdown drop-style">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <strong style="font-size: 1.2rem;">Departments</strong>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ URL('neurology') }}"><strong style="font-size: 1.1rem;">Neurology</strong></a></li>
-            <li><a class="dropdown-item" href="{{ URL('orthopedic') }}"><strong style="font-size: 1.1rem;">Orthopedic</strong></a></li>
-            <li><a class="dropdown-item" href="{{ URL('dental') }}"><strong style="font-size: 1.1rem;">Dental</strong></a></li>
-            <li><a class="dropdown-item" href="{{ URL('psychology') }}"><strong style="font-size: 1.1rem;">Psychology</strong></a></li>
-          </ul>
-        </li> --}}
         <li class="nav-item">
           <a class="nav-link" href="{{ URL('departments') }}"><strong style="font-size: 1.2rem;color: darkcyan;">Departments</strong></a>
         </li>
@@ -42,31 +31,10 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ URL('aboutus') }}"><strong style="font-size: 1.2rem; color: darkcyan;">About Us</strong></a>
         </li>
-        {{-- <li>
-        @if (Route::has('login') && Route::has('logout'))
-          @auth
-            <li class="nav-item">
-              <form action="{{ route('logout') }}" method="post">
-                @csrf
-                <button class="nav-link" type="submit"><strong style="font-size: 1.2rem;">{{ __('Log out') }}</strong></button>
-              </form>
-            </li>
-          @else
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('login') }}"><strong style="font-size: 1.2rem;">{{ __('Login') }}</strong></a>
-            </li>
-            @if (Route::has('register'))
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('register') }}"><strong style="font-size: 1.2rem;">{{ __('Register') }}</strong></a>
-                </li>
-            @endif
-          @endif
-        @endif
-        </li> --}}
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit"><strong style="font-size: 1.2rem;">Search</strong></button>
+      <form class="d-flex" role="search" action="{{ URL('/departments') }}" method="GET">
+        <input class="form-control me-2" type="text" name="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
   </div>

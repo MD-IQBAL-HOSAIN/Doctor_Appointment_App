@@ -21,7 +21,7 @@
             <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Create Appointment</a>
             <a href="{{ route('user.index') }}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>All User</a>           
             <a href="{{ route('patient.index') }}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Patient</a>
-            <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>View Doctor Dashboard</a>
+            <a href="{{ route('finddoctor.index') }}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>View Doctor Dashboard</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Settings</a>
                 <div class="dropdown-menu bg-transparent border-0">

@@ -112,7 +112,7 @@ class DepartmentController extends Controller
         $department->update($validatedData);
 
         // Redirect back with a success message
-        return redirect()->route('admin.index')->with('success', 'Department updated successfully!');
+        return redirect()->route('departments.index')->with('success', 'Department updated successfully!');
     }
 
    //...............................destroy..............................................................

@@ -1,85 +1,72 @@
-@extends('layouts.main', ['title' => 'Find doctor'])
+@extends('layouts.main', ['title' => 'Doctor List'])
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card mb-3" style="max-width: 540px; max-height: 300px; display: inline-block;">
-                <div class="row g-0">
-                    <div class="col-md-6">
-                        <img src="./images/doc4.webp" class="img-fluid rounded-start" style="height: 200px; width: auto;" alt="...">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <h4>Dr. Musa Al Nabi</h4>
-                            <h5 class="card-title">Dermatologist</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
+
+    <div class="container-fluid">
+        <h1 class="text-center">Find the Doctor</h1>
+        @if (isset($doctor_profiles))
+        @if (auth()->user()->role == 'admin')
+            <div class="d-flex justify-content-between mb-3">
+                <a href="{{ route('finddoctor.create') }}" class="btn btn-primary">Add Doctor</a>
             </div>
-        </div>
-        <!-- Repeat this block three more times for a total of four cards -->
-        <div class="col-md-6">
-            <div class="card mb-3" style="max-width: 540px; max-height: 300px; display: inline-block;">
-                <div class="row g-0">
-                    <div class="col-md-6">
-                        <img src="./images/doc1.webp" class="img-fluid rounded-start" style="height: 200px; width: auto;" alt="...">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <h4>Dr. Md. Sabbir</h4>
-                            <h5 class="card-title">Psychiatrist</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End of repeated block -->
-        <div class="col-md-6">
-            <div class="card mb-3" style="max-width: 540px; max-height: 300px; display: inline-block;">
-                <div class="row g-0">
-                    <div class="col-md-6">
-                        <img src="./images/doc2.jpg" class="img-fluid rounded-start" style="height: 200px; width: auto;" alt="...">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <h4>Dr. Jabir ibn Haiyan</h4>
-                            <h5 class="Orthopedic Doctor">Dentalogist</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End of repeated block -->
-        <div class="col-md-6">
-            <div class="card mb-3" style="max-width: 540px; max-height: 300px; display: inline-block;">
-                <div class="row g-0">
-                    <div class="col-md-6">
-                        <img src="./images/doc3.jpg" class="img-fluid rounded-start" style="height: 200px; width: auto;" alt="...">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <h4>Dr. Masudur Rahman</h4>
-                            <h5 class="card-title">Nurologist</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End of repeated block -->
+        @endif
+            <table class="table table-striped table-hover table-bordered table-responsive w-100 ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Image</th>
+                        <th>Department</th>
+                        <th>Education</th>
+                        <th>Experience</th>
+                        <th>Fees</th>
+                        <th>About</th>
+                        <th>Gender</th>
+                        <th>Degree</th>
+                        <th>University</th>
+                        <th>Country</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($doctor_profiles as $doctor_profile)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $doctor_profile->name }}</td>
+                            <td>{{ $doctor_profile->email }}</td>
+                            <td><img src="{{ asset('storage/' . $doctor_profile->image) }}" alt="" class="img-fluid" width="50"></td>
+                            <td>{{ $doctor_profile->department }}</td>
+                            <td>{{ $doctor_profile->education }}</td>
+                            <td>{{ $doctor_profile->experience }}</td>
+                            <td>{{ $doctor_profile->fees }}</td>
+                            <td>{{ $doctor_profile->about }}</td>
+                            <td>{{ $doctor_profile->gender }}</td>
+                            <td>{{ $doctor_profile->degree }}</td>
+                            <td>{{ $doctor_profile->university }}</td>
+                            <td>{{ $doctor_profile->country }}</td>
+                            <td>{{ $doctor_profile->phone }}</td>
+                            <td>{{ $doctor_profile->address }}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    @if (auth()->user()->role == 'admin')
+                                    <a href="{{ route('finddoctor.edit', $doctor_profile->id) }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                                    <form action="{{ route('finddoctor.destroy', $doctor_profile->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            {{ $doctor_profiles->links() }}
+        @endif
     </div>
-</div>
-
-
-  
-  
-  
-    
 @endsection
+
+

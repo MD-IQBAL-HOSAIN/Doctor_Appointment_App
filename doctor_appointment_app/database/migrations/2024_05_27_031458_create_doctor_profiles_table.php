@@ -15,14 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
             $table->string('image');
             $table->string('department');
             $table->string('education');
             $table->string('experience');
             $table->string('fees');
             $table->string('about');
-            $table->string('gender');
+            $table->enum('gender', ['men', 'women', 'other'])->default('men');
             $table->string('degree');
             $table->string('university');
             $table->string('country');          

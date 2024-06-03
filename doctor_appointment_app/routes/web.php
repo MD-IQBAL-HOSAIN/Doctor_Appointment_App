@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\AuthorAccessRole;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DlistController;
 use App\Http\Controllers\DoctorProfileController;
@@ -50,10 +49,8 @@ Route::resource('/patient', PatientProfileController::class)->middleware('auth')
 //departments
 Route::resource('/departments', DepartmentController::class)->middleware('auth');
 
-
-
 //Find doctor
-Route::get('/finddoctor',[DoctorProfileController::class, 'index'])->name('doctor.index')->middleware('auth');
+Route::resource('/finddoctor', DoctorProfileController::class)->middleware('auth');
 
 //user
 Route::resource('/user', UserController::class)->only(['index', 'store', 'show', 'create', 'edit', 'update', 'destroy'])->names('user');
@@ -82,4 +79,81 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+//######################################################################################
+
+
+// use App\Http\Controllers\AppointmentController;
+// use App\Http\Controllers\DepartmentController;
+// use App\Http\Controllers\DlistController;
+// use App\Http\Controllers\DoctorProfileController;
+// use App\Http\Controllers\MyprofileController;
+// use App\Http\Controllers\PatientProfileController;
+// use App\Http\Controllers\ProfileController;
+// use App\Http\Controllers\UserController;
+// use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Route;
+// use App\Http\Middleware\Admin;
+// use App\Http\Middleware\Doctor;
+// use App\Http\Middleware\Patient;
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/aboutus', function () {
+//     return view('aboutus');
+// });
+
+// // Department List
+// Route::middleware(Admin::class)->group(function () {
+//     Route::resource('/dlist', DlistController::class)->names('dlist');
+// });
+
+// // Patient Routes
+// Route::middleware(Patient::class)->group(function () {
+//     Route::get('/bookappointment', [AppointmentController::class, 'index'])->name('appointment.index')->middleware('auth');
+// });
+
+// // Doctor Routes
+// Route::middleware(Doctor::class)->group(function () {
+//     // Add any doctor-specific routes here
+// });
+
+// // Patient Profile
+// Route::resource('/patient', PatientProfileController::class)->middleware('auth')->parameters(['patient' => 'patient_profile']);
+
+// // Departments
+// Route::resource('/departments', DepartmentController::class)->middleware('auth');
+
+// // Find Doctor
+// Route::resource('/finddoctor', DoctorProfileController::class)->middleware('auth');
+
+// // User
+// Route::resource('/user', UserController::class)->only(['index', 'store', 'show', 'create', 'edit', 'update', 'destroy'])->names('user');
+
+// // User Profile
+// Route::resource('/myprofile', MyprofileController::class)->only(['index', 'store', 'show', 'create', 'edit', 'update', 'destroy'])->names('myprofile');
+
+// // Admin Dashboard
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::get('/dashboard', function () {
+//         if (Auth::user()->role == 'admin') {
+//             return view('admin.admindashboard');
+//         } else {
+//             return redirect('/');
+//         }
+//     })->name('dashboard');
+// });
+
+// // Profile
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+
+// require __DIR__.'/auth.php';
+
 
