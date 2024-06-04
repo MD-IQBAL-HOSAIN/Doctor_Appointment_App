@@ -1,12 +1,12 @@
 @extends('layouts.main', ['title' => 'Doctor Edit'])
 
 @section('content')
-    <div class="container">
-        <h1 class="text-center mb-2 mt-1">Edit Doctor</h1>
-        <form action="{{ route('finddoctor.update', $doctor->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            @if ($doctor)
+<div class="container">
+    <h1 class="text-center mb-2 mt-1">Edit Doctor</h1>
+    <form action="{{ route('finddoctor.update', $doctor->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        @if ($doctor)
                 <div class="form-group mb-2">
                     <label for="name">Name:</label>
                     <input type="text" name="name" class="form-control" value="{{ $doctor->name }}" required>
@@ -21,8 +21,13 @@
                     <img src="{{ asset('storage/' . $doctor->image) }}" class="img-thumbnail mt-2" alt="Current Image" width="100">
                 </div>
                 <div class="form-group mb-2">
-                    <label for="department">Department:</label>
-                    <input type="text" name="department" class="form-control" value="{{ $doctor->department }}" required>
+                    <label for="department_id">Department:</label>
+                    <select name="department_id" class="form-control" required>
+                        <option value="">Select Department</option>
+                        @foreach ($departments as $department)
+                            <option value="{{ $department->id }}" {{ $doctor->department_id == $department->id ? 'selected' : '' }}>{{ $department->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group mb-2">
                     <label for="education">Education:</label>

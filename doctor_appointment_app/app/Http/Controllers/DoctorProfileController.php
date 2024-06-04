@@ -38,7 +38,7 @@ class DoctorProfileController extends Controller
             'name' => 'required',
             'email' => ['required', 'email', Rule::unique('doctor_profiles')],
             'image' => 'required|image',
-            'department' => 'required',
+            'department_id' => 'required',
             'education' => 'required',
             'experience' => 'required',
             'fees' => 'required',
@@ -61,7 +61,7 @@ class DoctorProfileController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'image' => $imagePath,
-            'department' => $request->department,
+            'department_id' => $request->department_id,
             'education' => $request->education,
             'experience' => $request->experience,
             'fees' => $request->fees,
@@ -95,9 +95,12 @@ public function edit($id)
 {
     // Find the doctor profile by ID
     $doctor = doctor_profile::findOrFail($id);
-    
-    // Pass the doctor profile to the edit view
-    return view('doctor.edit', compact('doctor'));
+
+    // Get all departments from the database
+    $departments = department::all();
+
+    // Pass the doctor profile and departments to the edit view
+    return view('doctor.edit', compact('doctor', 'departments'));
 }
 
 
@@ -113,7 +116,7 @@ public function edit($id)
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'department' => 'required',
+            'department_id' => 'required',
             'education' => 'required',
             'experience' => 'required',
             'fees' => 'required',
@@ -138,7 +141,7 @@ public function edit($id)
             'name' => $request->name,
             'email' => $request->email,
             'image' => $imagePath,
-            'department' => $request->department,
+            'department_id' => $request->department_id,
             'education' => $request->education,
             'experience' => $request->experience,
             'fees' => $request->fees,
@@ -164,3 +167,4 @@ public function edit($id)
         return redirect()->route('finddoctor.index')->with('status', 'Doctor deleted successfully!');
     }
 }
+

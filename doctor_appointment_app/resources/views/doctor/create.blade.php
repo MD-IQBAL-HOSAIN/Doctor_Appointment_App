@@ -19,11 +19,10 @@
             </div>
             <div class="form-group mb-2">
                 <label for="department">Department:</label>
-                {{-- <input type="text" name="department" class="form-control" value="{{ old('department') }}" required> --}}
-                <select name="department" class="form-control" required>
+                <select name="department_id" class="form-control" required>
                     <option value="">Select Department</option>
                     @foreach ($departments as $department)
-                        <option value="{{ $department->name }}">{{ $department->name }}</option>
+                        <option value="{{ $department->id }}" {{ old('department_id') == $department->id ? 'selected' : '' }}>{{ $department->name }}</option>
                     @endforeach
                 </select>
             </div>

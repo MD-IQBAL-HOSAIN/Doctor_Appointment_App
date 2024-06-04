@@ -37,7 +37,10 @@
                             <td>{{ $doctor_profile->name }}</td>
                             <td>{{ $doctor_profile->email }}</td>
                             <td><img src="{{ asset('storage/' . $doctor_profile->image) }}" alt="" class="img-fluid" width="50"></td>
-                            <td>{{ $doctor_profile->department }}</td>
+                            {{-- 4-6-24 changed --}}
+                            {{-- <td>{{ $doctor_profile->department}}</td> --}}
+                            <td>{{ $doctor_profile->department_id}}</td>
+
                             <td>{{ $doctor_profile->education }}</td>
                             <td>{{ $doctor_profile->experience }}</td>
                             <td>{{ $doctor_profile->fees }}</td>
