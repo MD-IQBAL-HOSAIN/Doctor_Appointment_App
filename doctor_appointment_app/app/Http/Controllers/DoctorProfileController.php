@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\department;
 use App\Models\doctor_profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,9 @@ class DoctorProfileController extends Controller
      */
     public function create()
     {
-       return view('doctor.create');
+    //    $departments = department::pluck('name', 'id');
+    $departments = department::all();
+        return view('doctor.create',compact('departments'));
     }
 
     /**

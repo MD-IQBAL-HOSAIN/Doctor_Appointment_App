@@ -19,7 +19,13 @@
             </div>
             <div class="form-group mb-2">
                 <label for="department">Department:</label>
-                <input type="text" name="department" class="form-control" value="{{ old('department') }}" required>
+                {{-- <input type="text" name="department" class="form-control" value="{{ old('department') }}" required> --}}
+                <select name="department" class="form-control" required>
+                    <option value="">Select Department</option>
+                    @foreach ($departments as $department)
+                        <option value="{{ $department->name }}">{{ $department->name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group mb-2">
                 <label for="education">Education:</label>
