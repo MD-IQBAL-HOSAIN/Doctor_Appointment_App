@@ -12,7 +12,6 @@ class doctor_profile extends Model
         'name',
         'email',
         'image',
-        // 'department',
         'department_id',
         'education',
         'experience',

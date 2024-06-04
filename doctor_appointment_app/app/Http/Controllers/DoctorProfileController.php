@@ -15,7 +15,7 @@ class DoctorProfileController extends Controller
      */
     public function index()
     {
-       $doctor_profiles = doctor_profile::paginate(10);
+       $doctor_profiles = doctor_profile::paginate(6);
        return view('doctor.index', compact('doctor_profiles'));
     }
 

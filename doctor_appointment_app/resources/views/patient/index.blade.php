@@ -15,9 +15,6 @@
                     <div class="col-md-4">
                         <img src="{{ asset('storage/' . $patient_profile->image) }}" class="card-img" alt="..." width="200" height="250">
                     </div>
-                    {{-- <a href="">
-                        <img src="{{ asset('storage/' . $department->image) }}" alt="" class="img-fluid" style="width:900px; height:350px; object-fit:contain;">
-                    </a> --}}
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Name: {{ $patient_profile->name }}</h5>
