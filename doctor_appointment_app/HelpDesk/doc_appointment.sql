@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2024 at 07:10 AM
+-- Generation Time: Jun 05, 2024 at 05:18 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -105,7 +105,7 @@ CREATE TABLE `doctor_profiles` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `department` varchar(255) NOT NULL,
+  `department_id` bigint(20) UNSIGNED NOT NULL,
   `education` varchar(255) NOT NULL,
   `experience` varchar(255) NOT NULL,
   `fees` varchar(255) NOT NULL,
@@ -124,10 +124,10 @@ CREATE TABLE `doctor_profiles` (
 -- Dumping data for table `doctor_profiles`
 --
 
-INSERT INTO `doctor_profiles` (`id`, `name`, `email`, `image`, `department`, `education`, `experience`, `fees`, `about`, `gender`, `degree`, `university`, `country`, `phone`, `address`, `created_at`, `updated_at`) VALUES
-(4, 'Dr. Ema Chowdhury Nm', 'ema@gmail.com', 'doctor_images/swbZZyTcNQz0uHJk94JhTEextSxg3cth4jUBTGw7.webp', 'pardiology', 'BCS Health', 'Five years', '1000', 'fsdfad', 'women', 'MBBS', 'Sher-E-Bangla', 'Bangladesh', '01620745692', 'Mirpur 10', '2024-06-02 22:36:30', '2024-06-03 09:59:56'),
-(5, 'Dr. Ibrahim Jadran', 'amitumi@gmail.com', 'department/ap9teje0M2zUiTIIWsCO3Utgo331V3rnd9xCnsl0.webp', 'psychology', 'BCS Health', 'Five years', '1000', 'eeeeeeeeeeeee', 'men', 'MBBS', 'Sher-E-Bangla', 'Bangladesh', '01620745692', 'Mirpur 10', '2024-06-03 07:37:27', '2024-06-03 07:37:27'),
-(6, 'Dr. Muhit Mishra', 'mishra@gmail.com', 'doctor_images/pvxP8ijXSX7cz9d9kgH0ZvVvYwCUh4Aho74PNrav.jpg', 'orthopedic', 'MBBS', '3 years', '1200', 'hgfkhgfljh', 'men', 'BCS Health', 'jani na', 'Bangladesh', '01620745692', 'Mirpur 10', '2024-06-03 09:08:31', '2024-06-03 09:18:18');
+INSERT INTO `doctor_profiles` (`id`, `name`, `email`, `image`, `department_id`, `education`, `experience`, `fees`, `about`, `gender`, `degree`, `university`, `country`, `phone`, `address`, `created_at`, `updated_at`) VALUES
+(1, 'Dr. Abir', 'abir@gmail.com', 'doctor_images/Pep1JofmQh9em8sR0EDPNZjm0Iu8CuhomDj7yqGn.jpg', 11, 'ffffff', 'ffff', '100', 'dddddddd', 'men', 'ddddddd', 'ddddddddd', 'dddddddddd', '87656576', 'ddddddddd', NULL, '2024-06-04 10:10:05'),
+(2, 'Dr. Tamim Zubayer', 'zubayer@gmail.com', 'department/b3ZFmZMdgI23HXMaKTpaAKqNKt4Mm1GXTcp8oFbs.jpg', 7, 'MBBS', 'Five years', '1000', 'ggggggggggg', 'women', 'BCS Health', 'Sher-E-Bangla', 'Bangladesh', '01620745692', 'Mirpur 10', '2024-06-04 09:53:50', '2024-06-04 12:43:51'),
+(3, 'Dr. Tasnim Zara', 'Zara@gmail.com', 'doctor_images/mmCdhW9GMGBsKnFDpmJ4SVoJmoVhMz9s9vOvBysm.webp', 10, 'MBBS', 'Two years', '1200', 'aaaaaaaa', 'women', 'BCS Health', 'Sher-E-Bangla', 'Bangladesh', '01620745692', 'Mirpur 10', '2024-06-04 12:29:35', '2024-06-04 12:35:50');
 
 -- --------------------------------------------------------
 
@@ -241,7 +241,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2024_05_27_132939_create_settings_table', 9),
 (26, '2024_05_26_202914_create_departments_table', 11),
 (27, '2024_05_27_031539_create_patient_profiles_table', 12),
-(28, '2024_05_27_031458_create_doctor_profiles_table', 13);
+(29, '2024_05_27_031458_create_doctor_profiles_table', 13);
 
 -- --------------------------------------------------------
 
@@ -377,7 +377,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('Guv8rD2iZa8y3SQmteEUUKYtpHZ0ZO4JzuXyNjFD', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUTNpSXFuRTA3bUhuaktJdEpFdFNyVkg1QWhvdUR6ZzN6UVBPM3k1aiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6OTU6Imh0dHA6Ly9sb2NhbGhvc3QvTGFyYXZlbC9Eb2N0b3JfQXBwb2ludG1lbnRfQXBwL2RvY3Rvcl9hcHBvaW50bWVudF9hcHAvcHVibGljL2ZpbmRkb2N0b3IvY3JlYXRlIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1717477720);
+('AcXkVDIgsVpeO2aiIhflFaTIvlMhUShiVEyQucZs', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMzA2WDlwSFBLeXBSWmFZeEZMMTVnSkZmS3RlaTE3UWZZOFlUalhkYiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6ODg6Imh0dHA6Ly9sb2NhbGhvc3QvTGFyYXZlbC9Eb2N0b3JfQXBwb2ludG1lbnRfQXBwL2RvY3Rvcl9hcHBvaW50bWVudF9hcHAvcHVibGljL2ZpbmRkb2N0b3IiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1717524497),
+('ghe3c0n1yr9yhjzkRTirTOrGMMHw2oSBkJlD1PAs', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVmN2ZzhSaG5YUGFsYUxpWndlMTEyNjJYTW9JckdJMzlUNWVMMFBDYiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6ODg6Imh0dHA6Ly9sb2NhbGhvc3QvTGFyYXZlbC9Eb2N0b3JfQXBwb2ludG1lbnRfQXBwL2RvY3Rvcl9hcHBvaW50bWVudF9hcHAvcHVibGljL2ZpbmRkb2N0b3IiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjM6InVybCI7YTowOnt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1717557346),
+('GR1vPjdhzIGQr4GFLS9lDGTBni0BCFmeaACGyp5v', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiUkdITWtoM2JsN0xPTEtmaWh2eWxiNW01Nk9DNTdnOEIxZ05UMkNreiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjg4OiJodHRwOi8vbG9jYWxob3N0L0xhcmF2ZWwvRG9jdG9yX0FwcG9pbnRtZW50X0FwcC9kb2N0b3JfYXBwb2ludG1lbnRfYXBwL3B1YmxpYy9maW5kZG9jdG9yIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1717528628);
 
 -- --------------------------------------------------------
 
@@ -416,11 +418,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Bijoy Chowdhury', 'admin@gmail.com', NULL, '$2y$12$1L7V1g5q823v0K5KlBdMNuARBjdFzz7THaW9spIvfZnoPpCrIkMBm', 'admin', 'eWilV3ZURmHwlVTc6m3wDFjNwY1UzZXNUCXx3H3AxXKs36DnsjWjoLo3643w', '2024-05-26 13:36:13', '2024-06-01 13:10:03'),
+(1, 'Bijoy Chowdhury', 'admin@gmail.com', NULL, '$2y$12$1L7V1g5q823v0K5KlBdMNuARBjdFzz7THaW9spIvfZnoPpCrIkMBm', 'admin', 'qw2edClTaiD6Mu2WiyRhSp1SAsDe8XsDvG0jnLyUqPGAdwtKlVA0RyWnRVK7', '2024-05-26 13:36:13', '2024-06-01 13:10:03'),
 (2, 'patient', 'patient@gmail.com', NULL, '$2y$12$TeBc02rurVlU1ER3V2PKEehYpWhGFVHKaniR5Z9tNZFlaUmxURTva', 'patient', NULL, '2024-05-26 13:37:03', '2024-05-26 13:37:03'),
 (3, 'doctor', 'doctor@gmail.com', NULL, '$2y$12$h/TCVN4rjqEZXaM6IMU7nepknqAOOudP5Oa1ezIRdpuRSZKZnzuKu', 'doctor', NULL, '2024-05-26 13:37:38', '2024-05-26 13:37:38'),
 (4, 'Misty', 'misty@gmail.com', NULL, '$2y$12$PO3IVpxHTj3vb2xGQEweXuPAaKKhezplyO5bjdET0bTzRMYWSq6Lm', 'admin', NULL, '2024-05-29 13:10:42', '2024-05-29 22:27:17'),
-(5, 'Dr. Tasnim Zara', 'zara@gmail.com', NULL, '$2y$12$398udQDGsI3fPeuq38R22eLeCLpGFOhmPDRUR5LBoD.HlqJDORE/6', 'patient', 'wcrwbP7nJAm0jBV7q9hwvMQIgOgwEX7L6RdvmSJCjivWXDEFztjuj8PWzzoZ', '2024-05-29 13:17:54', '2024-05-29 15:50:31'),
+(5, 'Dr. Tasnim Zara', 'zara@gmail.com', NULL, '$2y$12$398udQDGsI3fPeuq38R22eLeCLpGFOhmPDRUR5LBoD.HlqJDORE/6', 'patient', 'Q6E9YUZ0M6VJqHBKhG4WDAxTKtnHNoVY33dG7SPtJwaJ1grtxz5cOvrqpbqH', '2024-05-29 13:17:54', '2024-05-29 15:50:31'),
 (6, 'Dr. Mosaidul Isalam', 'mosaidul@gmail.com', NULL, '$2y$12$iQuLynTRodNqnn7dZHpYwess8fB36f9V.MG90hvmYTWLwAKh08sey', 'patient', NULL, '2024-05-29 13:20:08', '2024-05-29 13:20:08'),
 (10, 'Adil', 'adil@gmail.com', NULL, '$2y$12$f5s6Zjytpa7c55SrxWNyE.Ay1ud02g82.gNT0y9gSjtgYVYeqDSAy', 'patient', NULL, '2024-06-01 13:10:51', '2024-06-01 13:10:51');
 
@@ -459,7 +461,8 @@ ALTER TABLE `departments`
 --
 ALTER TABLE `doctor_profiles`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `doctor_profiles_email_unique` (`email`);
+  ADD UNIQUE KEY `doctor_profiles_email_unique` (`email`),
+  ADD KEY `doctor_profiles_department_id_foreign` (`department_id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -581,7 +584,7 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `doctor_profiles`
 --
 ALTER TABLE `doctor_profiles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -611,7 +614,7 @@ ALTER TABLE `medical_histories`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -665,6 +668,12 @@ ALTER TABLE `users`
 ALTER TABLE `appointments`
   ADD CONSTRAINT `appointments_doctor_id_foreign` FOREIGN KEY (`doctor_id`) REFERENCES `doctor_profiles` (`id`),
   ADD CONSTRAINT `appointments_patient_id_foreign` FOREIGN KEY (`patient_id`) REFERENCES `patient_profiles` (`id`);
+
+--
+-- Constraints for table `doctor_profiles`
+--
+ALTER TABLE `doctor_profiles`
+  ADD CONSTRAINT `doctor_profiles_department_id_foreign` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`);
 
 --
 -- Constraints for table `medical_histories`
