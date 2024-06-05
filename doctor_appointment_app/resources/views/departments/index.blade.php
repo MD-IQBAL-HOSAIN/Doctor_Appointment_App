@@ -17,7 +17,7 @@
                         </div>
                         <div class="card-header">
                             <h5 class="card-title">
-                                <a href="{{route('finddoctor.index')}}">
+                                <a href="{{route('departments.doctors', $department->id)}}">
                                     <img src="{{ asset('storage/' . $department->image) }}" alt="" class="img-fluid"
                                         style="width:900px; height:350px; object-fit:contain;">
                                 </a>

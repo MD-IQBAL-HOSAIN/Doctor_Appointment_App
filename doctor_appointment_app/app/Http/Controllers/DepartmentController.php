@@ -127,4 +127,11 @@ class DepartmentController extends Controller
         }
     }
 
+    public function doctors($id){
+        $department = Department::find($id);
+        $department->loadMissing('doctors');
+        // dd($department);
+        return view('doctor.deptdoctors',compact('department'));
+    }
+
 }

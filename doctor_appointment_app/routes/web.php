@@ -50,6 +50,7 @@ Route::resource('/patient', PatientProfileController::class)->middleware('auth')
 Route::resource('/departments', DepartmentController::class)->middleware('auth');
 
 //Find doctor
+Route::get('/departments/{id}/doctors', [DepartmentController::class, 'doctors'])->middleware('auth')->name('departments.doctors');
 Route::resource('/finddoctor', DoctorProfileController::class)->middleware('auth');
 
 //user

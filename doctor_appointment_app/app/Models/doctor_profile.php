@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class doctor_profile extends Model
 {
@@ -24,5 +25,9 @@ class doctor_profile extends Model
         'phone',
         'address'
     ];
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(department::class);
+    }
 }
 
