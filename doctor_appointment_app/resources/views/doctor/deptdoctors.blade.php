@@ -34,5 +34,7 @@
                 </div>
             </div>
         @endforelse
+            <a class="btn btn-primary" href="">Book Appointment</a>
+       
     </div>
 @endsection
